@@ -34,7 +34,7 @@ class Player():
         self.suspended_turns -= 1
 
     def purchase_property(self, target_property):
-        self.make_payment(self.price)
+        self.make_payment(target_property.price)
         target_property.owner = self
         
         if isinstance(target_property, ColorProperty):
@@ -44,6 +44,16 @@ class Player():
         elif isinstance(target_property, Utility):
             self.owned_utilities.append(target_property)
 
-    
+    def go_to_jail(self):
+        self.current_space = 10 # jail space
+        self.suspended_turns = 3 # wait 3 turns, OR roll double, OR pay $50, OR use get out of jail free card
+
+    def leave_jail(self, rolled_doubles=False):
+        if self.get_out_of_jail_free_cards > 0:
+            self.get_out_of_jail_free_cards -= 1
+        elif not rolled_doubles:
+            self.make_payment(50)
+        self.suspended_turns = 0
+            
 
         

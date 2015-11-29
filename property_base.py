@@ -1,6 +1,5 @@
 
 class PropertyBase():
-
     def __init__(self):
         self.mortgaged = False
         self.owner = None
@@ -14,9 +13,19 @@ class PropertyBase():
         self.mortgaged = False
 
     def on_land(self, player):
+        print("Landed on " + self.name + ".")
         if self.owner == None:
-            # TODO: prompt_to_buy()
-            print(str(player.current_space) + ": Would you like to purchase " + self.name + " for $" + str(self.price) + "?")
-        elif self.owner is not player and not self.mortgaged:
+            self._prompt_to_buy(player)
+        elif self.owner is player:
+            print("You already own " + self.name + ".")
+        elif not self.mortgaged:
             player.make_payment(self.get_rent(), self.owner)
+
+    def _prompt_to_buy(self, player):
+        response = input(str(player.current_space) + ": Would you like to purchase " \
+              + self.name + " for $" + str(self.price) + "? (y/n)\n")
+        if response == "y":
+            player.purchase_property(self)
+            print("Purchased " + self.name + " for $" + str(self.price) + ".")
+            
 

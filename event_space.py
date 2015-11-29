@@ -8,12 +8,11 @@ class EventSpace():
         print(self.name + "!")
         if self.name == "Go":
             player.receive_payment(200)
-        elif self.name == "Jail":
+        elif self.name == "Jail": #just visiting
             pass
         elif self.name == "Free Parking":
             # TODO: logic for free parking to collect taxes if flag set to True?
             pass
         elif self.name == "Go To Jail":
-            player.current_space = 10 # jail space
-            player.suspended_turns = 3 # wait 3 turns, OR roll double, OR pay $50, OR use get out of jail free card
+            player.go_to_jail()
 
