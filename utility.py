@@ -7,8 +7,8 @@ class Utility(PropertyBase):
         self.name = name
         self.price = 150
 
-    def on_land(self, player):
-        super(Utility, self).on_land(player)
+    def on_land(self, player, board):
+        super(Utility, self).on_land(player, board)
 
     def get_rent(self):
         dice = Dice()

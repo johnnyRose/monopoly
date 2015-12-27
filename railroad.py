@@ -7,8 +7,8 @@ class Railroad(PropertyBase):
         self.name = name
         self.price = 200
     
-    def on_land(self, player):
-        super(Railroad, self).on_land(player)
+    def on_land(self, player, board):
+        super(Railroad, self).on_land(player, board)
 
     def get_rent(self):
         if len(self.owner.owned_railroads) == 1:

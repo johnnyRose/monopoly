@@ -4,12 +4,12 @@ class EventSpace():
     def __init__(self, name):
         self.name = name
 
-    def on_land(self, player):
+    def on_land(self, player, board):
         print(self.name + "!")
         if self.name == "Go":
             player.receive_payment(200)
-        elif self.name == "Jail": #just visiting
-            pass
+        elif self.name == "Jail":
+            print("Just visiting.")
         elif self.name == "Free Parking":
             # TODO: logic for free parking to collect taxes if flag set to True?
             pass

@@ -6,13 +6,18 @@ from player import Player
 
 board = Board()
 
-player = Player()
+player = Player("John")
 dice = Dice();
+
+players = [player]
+
+board.set_players(players)
 
 def jail_logic():
     print("You are in jail!")
     dice.roll()
     if dice.rolled_doubles:
+        print("You rolled doubles! You're out of jail!")
         pass
     else:
         print("You did not roll doubles.")
@@ -35,7 +40,7 @@ for i in range(30):
         continue
     
     player.move(dice)
-    board.spaces[player.current_space].on_land(player)
+    board.spaces[player.current_space].on_land(player, board)
     double_count = 0
     
     while dice.rolled_doubles:
@@ -45,5 +50,5 @@ for i in range(30):
             player.go_to_jail()
         
         player.move(dice)
-        board.spaces[player.current_space].on_land(player)
+        board.spaces[player.current_space].on_land(player, board)
 

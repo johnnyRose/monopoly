@@ -4,7 +4,8 @@ from utility import Utility
 
 class Player():
 
-    def __init__(self):
+    def __init__(self, name="Player"):
+        self.name = name
         self.cash = 1500
         self.suspended_turns = 0
         self.current_space = 0
@@ -24,11 +25,17 @@ class Player():
 
     def make_payment(self, amount, other_player=None):
         self.cash -= amount
+        
         if other_player != None:
             other_player.receive_payment(amount)
+            
+        print(self.name + " paid $" + str(amount) + " to " +
+             ("the bank" if other_player is None else other_player.name)
+              + ".")
 
     def receive_payment(self, amount):
         self.cash += amount
+        print(self.name + " received $" + str(amount) + ".")
 
     def wait_turn(self):
         self.suspended_turns -= 1
@@ -54,6 +61,20 @@ class Player():
         elif not rolled_doubles:
             self.make_payment(50)
         self.suspended_turns = 0
+
+    def get_street_repair_cost(self, chance=False):
+        house_count = 0
+        hotel_count = 0
+        house_multiplier = 25 if chance else 40
+        hotel_multiplier = 100 if chance else 115
+        
+        for prop in self.owned_color_properties:
+            if prop.houses < 5: # hotels are denoted as having 5 houses
+                house_count += prop.houses
+            else:
+                hotel_count += 1
+
+        return house_count * house_multiplier + hotel_count * hotel_multiplier
             
 
         

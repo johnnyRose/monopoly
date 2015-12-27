@@ -54,3 +54,5 @@ class Board():
         self.spaces.append(TaxSpace("Luxury Tax", False))
         self.spaces.append(ColorProperty("Boardwalk", 400, "blue", 2, 50, 200, 600, 1400, 1700, 2000, 200))
 
+    def set_players(self, players):
+        self.players = players

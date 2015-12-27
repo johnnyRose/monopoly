@@ -34,8 +34,8 @@ class ColorProperty(PropertyBase):
         if self.houses == 5:
             return self.rent_hotel
 
-    def on_land(self, player):
-        super(ColorProperty, self).on_land(player)
+    def on_land(self, player, board):
+        super(ColorProperty, self).on_land(player, board)
 
     def add_house(self):
         self.houses += 1

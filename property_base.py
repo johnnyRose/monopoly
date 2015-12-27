@@ -12,7 +12,7 @@ class PropertyBase():
         self.owner.make_payment((self.price / 2) * 1.1) # 10% interest
         self.mortgaged = False
 
-    def on_land(self, player):
+    def on_land(self, player, board):
         print("Landed on " + self.name + ".")
         if self.owner == None:
             self._prompt_to_buy(player)

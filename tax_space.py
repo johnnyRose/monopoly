@@ -3,7 +3,7 @@ class TaxSpace():
         self.name = name
         self.income_tax = income_tax
 
-    def on_land(self, player):
+    def on_land(self, player, board):
         print(self.name + "!")
         if (self.income_tax):
             tenPercent = player.cash / 10
